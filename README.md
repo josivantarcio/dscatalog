@@ -19,8 +19,8 @@ This is a product catalog project developed with Java and Spring Boot. The aim o
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/product-catalog.git
-    cd product-catalog
+    git clone https://github.com/josivantarcio/dscatalog.git
+    cd dscatalog
     ```
 
 2. **Build the project using Maven**:
