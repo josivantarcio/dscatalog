@@ -1,146 +1,166 @@
-# Product Catalog
+# DsCatalog - Product Management System
 
-This is a product catalog project developed with Java and Spring Boot. The aim of this project is to provide a REST API to manage products, allowing Create, Read, Update, and Delete (CRUD) operations.
+A comprehensive product catalog management system built with Spring Boot and modern best practices.
 
-## Technologies Used
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [Development](#development)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Monitoring](#monitoring)
+- [Security](#security)
+- [Contributing](#contributing)
+- [License](#license)
 
-- **Java 11**: Programming language used for project development.
-- **Spring Boot 2.5**: Framework used to simplify the configuration and development of Java applications.
-- **Maven**: Build automation tool and dependency management.
-- **H2 Database**: In-memory database used for development and testing.
-- **Postman**: Tool for testing the REST API.
+## Features
+- RESTful API for product management
+- Secure authentication and authorization
+- Real-time monitoring and logging
+- Caching for improved performance
+- Comprehensive testing suite
+- CI/CD pipeline integration
+- Containerized deployment
+- Health checks and metrics
+- Circuit breaker pattern
+- Rate limiting
+- Input validation
+- Proper error handling
+- Comprehensive documentation
 
-## Requirements
+## Technologies
+- **Backend**:
+  - Java 17
+  - Spring Boot 2.6.4
+  - Spring Data JPA
+  - Spring Security
+  - Spring Cloud
+  - H2 Database (Development)
+  - PostgreSQL (Production)
+  - Redis (Caching)
+  - Resilience4j (Circuit Breaker)
+  - Prometheus & Grafana (Monitoring)
+  - Swagger/OpenAPI (Documentation)
+  - JUnit 5 & Mockito (Testing)
+  - Maven (Build)
+  - Docker (Containerization)
 
-- **JDK 11** or higher
-- **Maven 3.6** or higher
+## Architecture
+The project follows a layered architecture:
+```
+com.chipset.dscatalog
+├── config/           # Configuration classes
+├── controller/       # REST controllers
+├── service/          # Business logic
+├── repository/       # Data access
+├── model/           # Domain entities
+├── dto/             # Data Transfer Objects
+├── exception/       # Custom exceptions
+├── security/        # Security configuration
+├── util/            # Utility classes
+└── resources/       # Configuration files
+```
 
-## Project Setup
+## Getting Started
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/josivantarcio/dscatalog.git
-    cd dscatalog
-    ```
+### Prerequisites
+- JDK 17
+- Maven 3.6+
+- Docker & Docker Compose
+- Git
 
-2. **Build the project using Maven**:
-    ```bash
-    mvn clean install
-    ```
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/josivantarcio/dscatalog.git
+   cd dscatalog
+   ```
 
-3. **Run the application**:
-    ```bash
-    mvn spring-boot:run
-    ```
+2. Build the project:
+   ```bash
+   mvn clean install
+   ```
 
-The application will be available at `http://localhost:8080`.
+3. Run the application:
+   ```bash
+   mvn spring-boot:run
+   ```
 
-## API Documentation
+4. Access the application:
+   - API: http://localhost:8080
+   - Swagger UI: http://localhost:8080/swagger-ui.html
+   - H2 Console: http://localhost:8080/h2-console
+   - Prometheus: http://localhost:9090
+   - Grafana: http://localhost:3000
 
-Below are the available endpoints in the API. You can use Postman to test these endpoints.
+## Development
 
-### Endpoints
+### Coding Standards
+- Follow Java Code Conventions
+- Use meaningful names
+- Write comprehensive comments
+- Follow SOLID principles
+- Implement proper error handling
+- Write unit tests
+- Use proper logging
 
-#### Create Product
+### Branch Strategy
+- main: Production code
+- develop: Development code
+- feature/*: New features
+- bugfix/*: Bug fixes
+- release/*: Release preparation
 
-- **URL**: `/api/products`
-- **Method**: `POST`
-- **Request Body**:
-    ```json
-    {
-        "name": "Product Name",
-        "description": "Product Description",
-        "price": 100.0,
-        "quantity": 10
-    }
-    ```
-- **Response**:
-    ```json
-    {
-        "id": 1,
-        "name": "Product Name",
-        "description": "Product Description",
-        "price": 100.0,
-        "quantity": 10
-    }
-    ```
+### Commit Messages
+Follow conventional commits:
+- feat: New feature
+- fix: Bug fix
+- docs: Documentation
+- style: Formatting
+- refactor: Code refactoring
+- test: Testing
+- chore: Maintenance
 
-#### List Products
+## Testing
+- Unit Tests: `mvn test`
+- Integration Tests: `mvn verify`
+- Coverage Report: `mvn site`
 
-- **URL**: `/api/products`
-- **Method**: `GET`
-- **Response**:
-    ```json
-    [
-        {
-            "id": 1,
-            "name": "Product Name",
-            "description": "Product Description",
-            "price": 100.0,
-            "quantity": 10
-        },
-        ...
-    ]
-    ```
+## Deployment
+1. Build Docker image:
+   ```bash
+   docker build -t dscatalog .
+   ```
 
-#### Get Product by ID
+2. Run with Docker Compose:
+   ```bash
+   docker-compose up -d
+   ```
 
-- **URL**: `/api/products/{id}`
-- **Method**: `GET`
-- **Response**:
-    ```json
-    {
-        "id": 1,
-        "name": "Product Name",
-        "description": "Product Description",
-        "price": 100.0,
-        "quantity": 10
-    }
-    ```
+## Monitoring
+- Prometheus metrics
+- Grafana dashboards
+- Spring Boot Actuator
+- Health checks
+- Log aggregation
 
-#### Update Product
+## Security
+- JWT authentication
+- Role-based authorization
+- Input validation
+- Rate limiting
+- CORS configuration
+- Secure headers
+- Password encryption
 
-- **URL**: `/api/products/{id}`
-- **Method**: `PUT`
-- **Request Body**:
-    ```json
-    {
-        "name": "Updated Product Name",
-        "description": "Updated Product Description",
-        "price": 150.0,
-        "quantity": 5
-    }
-    ```
-- **Response**:
-    ```json
-    {
-        "id": 1,
-        "name": "Updated Product Name",
-        "description": "Updated Product Description",
-        "price": 150.0,
-        "quantity": 5
-    }
-    ```
-
-#### Delete Product
-
-- **URL**: `/api/products/{id}`
-- **Method**: `DELETE`
-- **Response**: `204 No Content`
-
-## H2 Database
-
-The project uses the H2 in-memory database for development and testing purposes. You can access the H2 console to view the stored data.
-
-- **URL**: `http://localhost:8080/h2-console`
-- **JDBC URL**: `jdbc:h2:mem:testdb`
-- **User**: `sa`
-- **Password**: (leave blank)
+## Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
-
-This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for details.
-
-## Contribution
-
-Contributions are welcome! Feel free to open issues and pull requests.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
